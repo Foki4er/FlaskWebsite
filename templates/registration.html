@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+<link rel = 'stylesheet' href = "{{ url_for('static', filename = 'css/registration.css') }}">
+<div class="panel-heading">
+            <h3 class="panel-title">Регистрация пользователя</h3>
+        </div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="Username">Логин</label>&nbsp;<label class="required" for="">*</label>
+                <input class="login form-control" data-val="true" data-val-regex="Логин пользователя должен быть в пределах от 3 до 256 символов и содержать только буквы, цифры и знак подчеркивания" data-val-regex-pattern="^\w{3,256}$" data-val-required="Введите логин" id="Username" name="Username" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="Password">Пароль</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-length="Логин пользователя должен быть в пределах от 1 до 256 символов" data-val-length-max="256" data-val-length-min="1" data-val-required="Введите пароль" id="Password" name="Password" type="password">
+                <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="ConfirmPassword">Подтверждение пароля</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-equalto="Пароли не совпадают" data-val-equalto-other="*.Password" data-val-required="Введите подтверждение пароля" id="ConfirmPassword" name="ConfirmPassword" type="password">
+                <span class="field-validation-valid" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="Email">Адрес электронной почты</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-regex="Некорректный адрес электронной почты" data-val-regex-pattern="^\S+@\S+$" data-val-required="Введите адрес электронной почты" id="Email" name="Email" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="ConfirmEmail">Подтверждение адреса электронной почты</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-equalto="Адреса электронной почты не совпадают" data-val-equalto-other="*.Email" data-val-regex="Некорректный адрес электронной почты" data-val-regex-pattern="^\S+@\S+$" data-val-required="Введите подтверждение адреса электронной почты" id="ConfirmEmail" name="ConfirmEmail" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="ConfirmEmail" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber">Номер телефона</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-regex="Номер телефона должен быть формата +7 999 999 99 99" data-val-regex-pattern="(\+7|8)[ #*\-\(\)\[\]]*([0-9][ #*\-\(\)\[\]]*){10,45}$" data-val-required="Введите номер телефона" id="PhoneNumber" name="PhoneNumber" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="LastName">Фамилия</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-length="Фамилия пользователя должена быть в пределах от 1 до 256 символов" data-val-length-max="256" data-val-length-min="1" data-val-required="Введите фамилию" id="LastName" name="LastName" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="FirstName">Имя</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-length="Имя пользователя должено быть в пределах от 1 до 256 символов" data-val-length-max="256" data-val-length-min="1" data-val-required="Введите имя" id="FirstName" name="FirstName" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="MiddleName">Отчество</label>&nbsp;<label class="required" for="">*</label>
+                <input class="form-control" data-val="true" data-val-length="Отчество пользователя должено быть в пределах от 1 до 256 символов" data-val-length-max="256" data-val-length-min="1" data-val-required="Введите отчество" id="MiddleName" name="MiddleName" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="MiddleName" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="GenderId">Пол</label>&nbsp;<label class="required" for="">*</label>
+                <select class="form-control" data-val="true" data-val-number="The field Пол must be a number." data-val-required="Введите пол" id="GenderId" name="GenderId"><option value="">Не указано</option>
+                    <option value="1">Мужской</option>
+                    <option value="2">Женский</option>
+                </select>
+                <span class="field-validation-valid" data-valmsg-for="GenderId" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="BirthDate">Дата рождения</label>&nbsp;<label class="required" for="">*</label>
+                <input class="datepicker form-control" data-date-format="dd.mm.yyyy" data-val="true" data-val-date="The field Дата рождения must be a date." data-val-required="Введите дату рождения" id="BirthDate" name="BirthDate" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="BirthDate" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="form-group">
+                <form method="POST" action="{{ url_for('private_office') }}">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="registrate" value="Зарегистрироваться">
+                    </div>
+                </form>
+                <button class="btn" name="cancel" value="cancel">Вернуться на страницу авторизации</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

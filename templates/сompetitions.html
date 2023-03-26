@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Все соревнования на сайте
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1>Все соревнования</h1>
+    <ul class="list-posts">
+        {% for element in posts %}
+        <li>
+            <p class="title"><a href="{{ url_for('сompetitions_detail', id_post=element.id)}}"> {{element.title}} </a> </p>
+            <p class="annonce">{{element.text[:50]}}</p>
+        </li>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}
