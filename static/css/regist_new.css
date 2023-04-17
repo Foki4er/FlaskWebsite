@@ -1,0 +1,53 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили формы */
+.form-contact {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-contact label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-contact input[type="text"],
+.form-contact input[type="password"] {
+    padding: 5px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.form-contact input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-contact input[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+/* Медиа запрос для адаптивности */
+@media only screen and (max-width: 600px) {
+    .form-contact input[type="text"],
+    .form-contact input[type="password"] {
+        width: 100%;
+    }
+}
+
