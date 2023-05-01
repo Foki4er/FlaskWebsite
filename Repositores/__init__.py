@@ -1,0 +1,2 @@
+from .UserReposiory import UserRepository
+from .OlympiadRepository import OlympiadRepository

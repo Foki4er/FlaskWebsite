@@ -14,7 +14,7 @@ from registration_login import Register_login
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///var/app-instance/blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(24)
 
@@ -25,27 +25,33 @@ login_manager.login_view = 'entry'
 
 register_or_login = Register_login()
 
+
 @app.route('/registration', methods=('GET', 'POST'))
 def registeration():
     return register_or_login.register()
+
 
 @app.route("/entry", methods=["POST", "GET"])
 def entry():
     return register_or_login.login()
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return Users.query.get(int(user_id))
 
+
 @app.route('/')
 def main_page():
     return render_template("main_page.html")
+
 
 @app.route('/сompetitions')
 @login_required
 def сompetitions():
     olympiads = Olympiad.query.order_by(Olympiad.date.desc()).all()
     return render_template('сompetitions.html', olympiads=olympiads)
+
 
 @app.route('/сompetitions/<int:id>')
 @login_required
@@ -54,6 +60,7 @@ def сompetition_detail(id):
     if not olympiad:
         abort(404)
     return render_template('сompetition_detail.html', olympiad=olympiad)
+
 
 @app.route('/сompetitions/<int:id>/application')
 @login_required
@@ -78,4 +85,5 @@ def сompetition_application(id):
 
 
 if __name__ == '__main__':
+
     app.run(debug=True)

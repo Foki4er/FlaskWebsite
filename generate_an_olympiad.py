@@ -1,21 +1,20 @@
 from flask import redirect, render_template, request, url_for, flash
-from user_data import Olympiad, db
-from werkzeug.security import generate_password_hash
-from flask_login import login_required
+from user_data import db
+from Repositores import OlympiadRepository
+from Models.Olympiada import PostOlympiad
+
 
 class Generate_something:
+    def __init__(self):
+        self.__olympiad_repository: OlympiadRepository = OlympiadRepository(db.session)
+
     def generate_olympiad(self):
         if request.method == 'POST':
-            title = request.form['title']
-            introduction = request.form['introduction']
-            text = request.form['text']
 
-            olympiad = Olympiad(title=title, introduction=introduction, text=text)
-            try:
-                db.session.add(olympiad)
-                db.session.commit()
-                return redirect('/admin/сompetitions')
-            except:
-                return 'При добавлении статьи произошла ошибка'
+            olympiad = PostOlympiad(**request.form)
+
+            self.__olympiad_repository.add(olympiad)
+
+            return redirect('/admin/сompetitions')
 
         return render_template('admin/create-article.html')

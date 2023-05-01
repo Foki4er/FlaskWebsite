@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 db = SQLAlchemy()
 
@@ -17,14 +19,20 @@ class Users(db.Model, UserMixin):
     def __repr__(self):
         return f"<users {self.id}>"
 
-    def set_password(self,password):
-        self.password = generate_password_hash(password)
+    @property
+    def password(self):
+        return self.psw
 
-    def check_password(self, password):
-        return check_password_hash(self.password, password)
+    @password.setter
+    def password(self, password: str):
+        self.psw = generate_password_hash(password)
+
+    def check_password(self, password: str):
+        return check_password_hash(self.psw, password)
 
     def get_id(self):
         return str(self.id)
+
 
 class Admins(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,6 +43,7 @@ class Admins(db.Model, UserMixin):
 
     def __repr__(self):
         return f"<admins {self.id}>"
+
 
 class Profiles(db.Model):
     id = db.Column(db.Integer, primary_key=True)

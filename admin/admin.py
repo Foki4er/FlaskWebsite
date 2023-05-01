@@ -45,6 +45,7 @@ def entry():
 
     return render_template('admin/entry.html', title='Админ-панель')
 
+
 @admin.route('/logout', methods=["POST", "GET"])
 def logout():
     if not isLogged():
@@ -54,12 +55,14 @@ def logout():
 
     return redirect(url_for('.entry'))
 
+
 @admin.route('/сompetitions')
 def сompetitions():
     if not isLogged():
         return  redirect(url_for('.entry'))
     olympiads = Olympiad.query.order_by(Olympiad.date.desc()).all()
     return render_template('admin/сompetitions.html', olympiads=olympiads)
+
 
 @admin.route('/сompetitions/<int:id>')
 def сompetition_detail(id):
@@ -128,10 +131,11 @@ def list_of_users():
     profiles_dict = {profile.id: profile for profile in profiles}
     return render_template('admin/list_of_users.html', users=users, profiles=profiles_dict)
 
+
 @admin.route('/create_user', methods=('GET', 'POST'))
 def create_user():
     if not isLogged():
-        return  redirect(url_for('.entry'))
+        return redirect(url_for('.entry'))
 
     if request.method == "POST":
         if request.form['psw'] == request.form['psw2']:
