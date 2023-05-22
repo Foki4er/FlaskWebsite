@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Личный кабинет
+{% endblock %}
+
+{% block body %}
+
+<style>
+  .form-input {
+    display: block;
+  }
+.requests-container {
+  margin-left: 200px;
+}
+
+.requests-container p {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+</style>
+
+<div class="container mt-5 d-flex flex-row">
+
+<div class="requests-container">
+    <p>Ваши заявки:</p>
+    <p>Название мероприятия и статус заявки:</p>
+    {% for application in sent_application %}
+        <span>{{ application.title_olympiad }} {{ application.approved }}</span>
+        {% if "олимпиада" not in application.title_olympiad.lower() and "олимпиада" not in application.title_olympiad.lower() and application.approved == "Заявка принята" %}
+            <a href="my_applications/submit_a_job" class ='btn btn-warning' >Подать работу</a>
+        {% endif %}
+        <br>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

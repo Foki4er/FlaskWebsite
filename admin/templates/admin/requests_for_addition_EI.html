@@ -1,0 +1,25 @@
+{% extends 'admin/main_admin.html' %}
+
+{% block title %}
+Все пользователи
+{% endblock %}
+
+{% block body %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Учебное заведение</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for afai in applications_for_addition_institution %}
+        <tr>
+            <td>{{ afai.institution_name }}</td>
+            <td><a href ="/admin/requests_for_addition_EI/{{ afai.id }}" class ='btn btn-success'>Добавить</a></td>
+            <td><a href ="/admin/requests_for_addition_EI/{{ afai.id }}/delete" class ='btn btn-danger'>Удалить</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

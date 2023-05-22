@@ -1,0 +1,14 @@
+{% extends 'admin/main_admin.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>{{ title }}</h1>
+    <p>{{ post }}</p>
+    {% for element in posts %}
+    <li>
+
+    </li>
+    {% endfor %}
+    <a class="btn btn-danger">Удалить</a>
+</div>
+{% endblock %}

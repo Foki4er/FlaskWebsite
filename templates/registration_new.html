@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}">
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    </head>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/regist_new.css') }}">
+</head>
+
+<form action="" method="post" class="form-contact">
+  <p><label>Фамилия: </label> <input type="text" name="surname" value="" required />
+  <p><label>Имя: </label> <input type="text" name="name" value="" required />
+  <p><label>Отчество: </label> <input type="text" name="patronymic" value="" required />
+  <p><label>Возраст: </label> <input type="text" name="old" value="" required />
+  <p><label>Учебное заведение:</label>
+<div style="display: flex; align-items: center;">
+  <select name="educational_institution" required style="width: 300px; padding: 10px 0;">
+    {% for institution in institutions %}
+      <option value="{{ institution.institution_title }}">{{ institution.institution_title }}</option>
+    {% endfor %}
+  </select>
+  <a href = "/create_educational_institution" class="btn btn-primary ml-2" style="margin-left: 10px; padding: 10px 20px;">
+    Добавить учебное заведение</a>
+</div>
+
+  <p><label>Город: </label> <input type="text" name="city" value="" required />
+  <p><label>Email: </label> <input type="text" name="email" value="" required />
+  <p><label>Номер телефона: </label> <input type="text" name="phone_number" value="" required />
+  <p><label>Пароль: </label> <input type="password" name="psw" value="" required />
+  <p><label>Повтор пароля: </label> <input type="password" name="psw2" value="" required />
+  <p><input type="submit" value="Регистрация" />
+</form>
+
+{% endblock %}
