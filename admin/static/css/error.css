@@ -1,0 +1,12 @@
+.flashes {
+  color: red;
+  font-size: 14px;
+  border: 1px solid red;
+  padding: 5px;
+  background-color: #ffeeee;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Заявка на добавление учебного заведения
+{% endblock %}
+
+{% block body %}
+<form action="{{ url_for('create_educational_institution') }}" method="POST">
+  <div style="margin: 20px;">
+    <h1>Заявка на добавление учебного заведения</h1>
+    <label>Учебное заведение:</label>
+    <input type="text" name="educational_institution" value="" style="font-size: 18px; width: 900px; margin-right: 10px;" required>
+    <button type="submit" class='btn btn-success'>Отправить заявку</button>
+  </div>
+</form>
+
+
+{% endblock %}
+

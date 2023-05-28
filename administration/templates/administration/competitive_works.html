@@ -1,0 +1,57 @@
+{% extends 'administration/main_administration.html' %}
+
+{% block title %}
+Конкурсные работы
+{% endblock %}
+
+{% block body %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название олимпиады</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Отчество</th>
+            <th>Возраст</th>
+            <th>Город</th>
+            <th>Учебное заведение</th>
+          <th>Класс/Курс</th>
+          <th>Телефонный номер</th>
+          <th>Почта</th>
+
+          <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for saa in application %}
+    {% for sa in sent_applications %}
+        {% if "олимпиада" not in sa.title_olympiad.lower() and "олимпиада" not in sa.title_olympiad.lower() %}
+    {% if saa.title_olympiad == sa.title_olympiad and saa.email == sa.email %}
+            <tr>
+                <td>{{ sa.title_olympiad }}</td>
+                <td>{{ sa.name }}</td>
+                <td>{{ sa.surname }}</td>
+                <td>{{ sa.patronymic }}</td>
+                <td>{{ sa.old }}</td>
+                <td>{{ sa.city }}</td>
+                <td>{{ sa.educational_institution }}</td>
+                <td>{{ sa.classe }}</td>
+                <td>{{ sa.phone_number }}</td>
+                <td>{{ sa.email }}</td>
+
+
+
+                <td><a href="/administration/competitive_works/{{ saa.id }}" class="btn btn-success">Проверить</a></td>
+
+            </tr>
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+
+
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,61 @@
+/* Форма регистрации */
+.form-contact {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.form-contact input[type="text"],
+.form-contact input[type="password"],
+.form-contact select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.form-contact input[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-contact input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+.form-contact label {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-contact select option {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Сообщения об ошибках */
+.flashes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flashes li {
+  font-size: 16px;
+  color: #dc3545;
+  margin-bottom: 10px;
+}

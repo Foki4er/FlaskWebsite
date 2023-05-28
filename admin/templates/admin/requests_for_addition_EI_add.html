@@ -1,0 +1,34 @@
+{% extends 'admin/main_admin.html' %}
+
+{% block title %}
+Полное удаление пользователя
+{% endblock %}
+
+{% block body %}
+<style>
+  .form-input {
+    display: block;
+  }
+.requests-container {
+  margin-left: 200px;
+}
+
+.requests-container p {
+  font-weight: bold;
+  margin-bottom: 5px;
+
+
+</style>
+<div class="container mt-5">
+  <form action="{{ url_for('admin.requests_for_addition_EI_add', id=applications_for_addition_institution.id) }}" method="POST">
+    <h1>Вмешите дополнительные данные учебного заведения</h1>
+    <label>Учебное заведение:</label>
+    <input type="text" name="institution_title" value="{{ applications_for_addition_institution.institution_name }}" class="form-input" size="120">
+    <label>Фамилия Имя Отчество Директора:</label>
+    <input type="text" name="institution_director" value="" class="form-input" size="120">
+    <label>Email адрес школы (Если УЧ - не школа, оставьте поле пустым):</label>
+    <input type="text" name="institution_email"value="" class="form-input" size="120">
+    <button type="submit" class='btn btn-success'>Добавить</button>
+    </form>
+</div>
+{% endblock %}

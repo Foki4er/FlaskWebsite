@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Заявление на участие в олимпиаде
+{% endblock %}
+{% block body %}
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}">
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    </head>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/сompetition_application.css') }}">
+<div class="container mt-5">
+    <h1>{{ olympiad.title }}</h1>
+  <body>
+    <h2>Заявка на участие в олимпиаде</h2>
+    <form action="" method="post" class="form-contact">
+  <p><label>Фамилия: </label> <input type="text" name="surname" value="{{ profile.surname }}" required readonly />
+  <p><label>Имя: </label> <input type="text" name="name" value="{{ profile.name }}" required readonly/>
+  <p><label>Отчество: </label> <input type="text" name="patronymic" value="{{ profile.patronymic }}" required readonly/>
+  <p><label>Возраст: </label> <input type="text" name="old" value="{{ profile.old }}" required readonly/>
+  <p><label>Город: </label> <input type="text" name="city" value="{{ profile.city }}" required readonly/>
+  <p><label>Учебное заведение: </label> <input type="text" name="educational_institution" value="{{ profile.educational_institution }}"  id="institution-input" readonly required />
+
+  <!-- Поле для ввода класса, которое будет появляться, если введено "СОШ" -->
+        <div id="class-container">
+          <label>Класс:</label>
+          <select name="class" class="form-input" required>
+            <option value="6 класс" {% if profile.class == '6 класс' %} selected {% endif %}>6 класс</option>
+            <option value="7 класс" {% if profile.class == '7 класс' %} selected {% endif %}>7 класс</option>
+            <option value="8 класс" {% if profile.class == '8 класс' %} selected {% endif %}>8 класс</option>
+            <option value="9 класс" {% if profile.class == '9 класс' %} selected {% endif %}>9 класс</option>
+            <option value="10 класс" {% if profile.class == '10 класс' %} selected {% endif %}>10 класс</option>
+            <option value="11 класс" {% if profile.class == '11 класс' %} selected {% endif %}>11 класс</option>
+          </select>
+        </div>
+
+
+  <!-- Поле для ввода названия курса, которое будет появляться, если не введено "СОШ" -->
+      <div id="course-container">
+        <label>Курс:</label>
+        <select name="course" class="form-input" required>
+
+          <option value="1" {% if profile.course == '1 курс' %} selected {% endif %}>1 курс</option>
+          <option value="2" {% if profile.course == '2 курс' %} selected {% endif %}>2 курс</option>
+          <option value="3" {% if profile.course == '3 курс' %} selected {% endif %}>3 курс</option>
+          <option value="4" {% if profile.course == '4 курс' %} selected {% endif %}>4 курс</option>
+        </select>
+      </div>
+      <p><label>Email: </label> <input type="text" name="email" value="{{ user.email }}" required readonly/>
+      <p><label>Номер телефона: </label> <input type="text" name="phone_number" value="{{ profile.phone_number }}" required readonly/>
+
+    <button type="submit" class='btn btn-success'>Отправить заявку</button>
+  </form>
+  </body>
+</div>
+
+<script>
+  // Получаем ссылки на элементы управления
+  var institutionInput = document.getElementById('institution-input');
+  var classContainer = document.getElementById('class-container');
+  var courseContainer = document.getElementById('course-container');
+
+  // Функция для показа/скрытия полей
+  function toggleFields() {
+    // Получаем значение поля и приводим его к нижнему регистру
+    var institutionValue = institutionInput.value.toLowerCase();
+
+    // Если значение начинается с "сош" или "гимназия", то показываем поле для ввода класса и скрываем поле для ввода курса
+    if (institutionValue.startsWith('сош') || institutionValue.includes('гимназия')) {
+      classContainer.style.display = 'block';
+      courseContainer.style.display = 'none';
+    }
+    // Иначе показываем поле для ввода курса и скрываем поле для ввода класса
+    else {
+      classContainer.style.display = 'none';
+      courseContainer.style.display = 'block';
+    }
+  }
+
+  // Вызываем функцию при загрузке страницы и добавляем обработчик на изменение поля "Учебное заведение"
+  toggleFields();
+  institutionInput.addEventListener('input', toggleFields);
+
+</script>
+
+
+
+
+{% endblock %}
